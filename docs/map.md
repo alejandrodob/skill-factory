@@ -17,12 +17,12 @@ skill-factory/
 │   ├── map.md                          # This file - repository structure
 │   └── project.md                      # Project-specific information
 └── output_skills/                      # Created skills organized by category
-    ├── testing/                        # tdd, nullables, approval-tests, bdd-with-approvals
-    ├── design/                         # hexagonal-architecture, event-modeling, collaborative-design
-    ├── practices/                      # refactoring, refinement-loop
+    ├── testing/                        # tdd, approval-tests, mutation-testing, test-desiderata
+    ├── design/                         # hexagonal-architecture, modern-cli-design
+    ├── practices/                      # refactoring, refinement-loop, code-simplifier, complexity-review, hamburger-method, small-safe-steps, story-splitting, thin-wrappers
     ├── ai/                             # ai-patterns, creating-process-files
-    │   └── claude-code/                # creating-hooks
-    └── developer-tools/                # writing-bash-scripts, using-uv, git-worktrees
+    │   └── claude-code/                # creating-hooks, writing-statuslines
+    └── developer-tools/                # writing-bash-scripts, using-uv, dockerfile-review
 ```
 
 ## Purpose
