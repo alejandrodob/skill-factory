@@ -95,6 +95,22 @@ def uninstall_skill(skill_name):
     return True
 
 
+def cleanup_broken_symlinks():
+    if not GLOBAL_SKILLS_DIR.exists():
+        print("No global skills directory found.")
+        return
+    removed = 0
+    for entry in sorted(GLOBAL_SKILLS_DIR.iterdir()):
+        if entry.is_symlink() and not entry.resolve().exists():
+            print(f"Removing broken symlink: {entry.name}")
+            entry.unlink()
+            removed += 1
+    if removed == 0:
+        print("No broken symlinks found.")
+    else:
+        print(f"Removed {removed} broken symlink(s).")
+
+
 def install_skill_local(registry, skill_name):
     source = skill_source_path(registry, skill_name)
     if not source:
@@ -327,6 +343,7 @@ def print_usage():
     print("  ./skills install-all         Install all skills globally")
     print("  ./skills uninstall <name>    Uninstall skill globally")
     print("  ./skills uninstall-all       Uninstall all skills globally")
+    print("  ./skills cleanup             Remove broken symlinks (deleted skills)")
     print("  ./skills toggle              Interactive mode (TUI)")
     print("")
     print("  ./skills local status        List local skills status")
@@ -341,6 +358,8 @@ def main():
         print_usage()
     elif args[0] == "status":
         cli_status()
+    elif args[0] == "cleanup":
+        cleanup_broken_symlinks()
     elif args[0] == "install-all":
         cli_install_all()
     elif args[0] == "uninstall-all":
